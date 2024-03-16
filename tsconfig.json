@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+		"baseUrl": ".",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES6"],
+		"declarationMap": true,
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+		"emitDeclarationOnly": true,
+		"allowJs": true,
+		"declaration": true,
+		"outDir": "dist",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["lib/**/*.ts", "shared/**/*.ts"]
+}
