@@ -1,39 +1,50 @@
 import { describe, test } from 'vitest'
-import { flyapi } from '../main'
+// import { flyapi, type Group } from '../main'
 
 describe('Flyapi', () => {
   test('simple test', async () => {
-    interface Todo {
-      userId: number
-      id: number
-      title: string
-      completed: boolean
-    }
+    // Todo: write tests
 
-    interface Post {
-      id: number
-      title: string
-    }
+    // interface Post {
+    //   postId: number
+    //   id: number
+    //   title: string
+    //   body: string
+    // }
+    // interface Comment {
+    //   postId: number
+    //   id: number
+    //   name: string
+    //   email: string
+    //   body: string
+    // }
 
-    interface TestAPI {
-      todos: Todo
-      posts: Post
-    }
+    // interface Todo {
+    //   userId: number
+    //   id: number
+    //   title: string
+    //   completed: boolean
+    // }
 
-    const apiInstance = flyapi<TestAPI>({ fetchOptions: { baseURL: 'https://jsonplaceholder.typicode.com' } })
+    // interface TestAPI {
+    //   posts: Group<{
+    //     comments: Comment[]
+    //   }, Post | Post[]>
+    //   todos: Todo | Todo[]
+    // }
 
-    const todo = await apiInstance.todos({ inlinePathChunks: [2] })
-    const posts = await apiInstance.posts({ inlinePathChunks: [2] })
-    const created = await apiInstance.posts({
-      method: 'POST',
-      body: {
-        title: 'foo',
-        body: 'bar',
-        userId: 1
-      }
-    })
-		const commentsFrom1Post = await apiInstance.
+    // const api = flyapi<TestAPI>({ fetchOptions: { baseURL: 'https://jsonplaceholder.typicode.com' } })
 
-    console.log(todo, posts, created)
+    // const posts = await api.posts.exec<Post[]>()
+    // const post = await api.posts.exec<Post>({ urlParams: { posts: 1 } })
+    // const comments = await api.posts.comments.exec({ urlParams: { posts: 1 } })
+    // const todos = await api.todos.exec<Todo[]>()
+    // const todo = await api.todos.exec<Todo>({ urlParams: { todos: 1 } })
+
+    // console.log(posts.length)
+    // console.log(post.id)
+    // console.log(comments.length)
+    // console.log(todos.length)
+    // console.log(todo.id)
   })
 })

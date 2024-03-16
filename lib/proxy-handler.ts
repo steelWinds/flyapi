@@ -3,24 +3,30 @@ import { isNil } from '../shared/isNil'
 import { joinURL } from 'ufo'
 
 export interface FlyapiHandlerOptions extends FetchOptions {
-  inlinePathChunks?: Array<string | number>
+  urlParams?: Record<string, string | number>
   selfCaseTransform?: (str: string) => string
 }
 
 export const proxyHandler = <T>(
-  _prop: string,
   _fetchInstance: $Fetch,
   _defaultTransform: (str: string) => string,
+  _chunks: string[],
   options: FlyapiHandlerOptions = {}
 ): Promise<T> => {
-  const { inlinePathChunks = [], selfCaseTransform, ...fetchOptions } = options
+  const { selfCaseTransform, urlParams = {}, ...fetchOptions } = options
 
-  const pathChunks = _prop
-    .split('_')
-    .filter(Boolean)
-    .map(item => (isNil(selfCaseTransform) ? _defaultTransform(item) : selfCaseTransform(item)).trim())
+  const caseTransformedChunks = _chunks.map(item =>
+    (isNil(selfCaseTransform) ? _defaultTransform(item) : selfCaseTransform(item)).trim())
 
-  const methodPath = joinURL('', ...pathChunks, ...inlinePathChunks.map(String))
+  const pathChunks: string[] = []
+
+  for (const chunk of caseTransformedChunks) {
+    pathChunks.push(chunk)
+
+    !isNil(urlParams[chunk]) && pathChunks.push(String(urlParams[chunk]))
+  }
+
+  const methodPath = joinURL('', ...pathChunks)
 
   return _fetchInstance(methodPath, fetchOptions)
 }
