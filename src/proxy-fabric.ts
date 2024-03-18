@@ -1,5 +1,5 @@
 import { ofetch, type FetchOptions } from 'ofetch'
-import { proxyHandler, type FlyapiHandlerOptions } from './proxy-handler'
+import { defaultProxyHandler, type FlyapiHandlerOptions } from 'src/default-proxy-handler'
 
 interface ExecuteHandler<T> {
   exec: <Concrete = null>(options?: FlyapiHandlerOptions) => Promise<Concrete extends null ? T : Concrete extends T ? Concrete : never>
@@ -28,11 +28,11 @@ interface FlyapiFabricOptions {
   caseTransform?: (str: string) => string
 }
 
-const flyapi = <T extends Record<string, any>>(options: FlyapiFabricOptions = {}): GeneratedFlyapiSchema<T> => {
+const flyapi = <T extends Record<string, any>>(options: FlyapiFabricOptions = {}, proxyHandler?: typeof defaultProxyHandler): GeneratedFlyapiSchema<T> => {
   const { fetchOptions = {}, caseTransform = (str: string) => str } = options
 
   const _fetchInstance = ofetch.create(fetchOptions)
-  const handler = proxyHandler.bind(null, _fetchInstance, caseTransform)
+  const handler = (proxyHandler ?? defaultProxyHandler).bind(null, _fetchInstance, caseTransform)
 
   let recordedChunks: string[] = []
 

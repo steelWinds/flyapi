@@ -1,5 +1,5 @@
 import type { $Fetch, FetchOptions } from 'ofetch'
-import { isNil } from '../shared/isNil'
+import { isNil } from 'utils'
 import { joinURL } from 'ufo'
 
 export interface FlyapiHandlerOptions extends FetchOptions {
@@ -7,7 +7,7 @@ export interface FlyapiHandlerOptions extends FetchOptions {
   selfCaseTransform?: (str: string) => string
 }
 
-export const proxyHandler = <T>(
+export const defaultProxyHandler = <T>(
   _fetchInstance: $Fetch,
   _defaultTransform: (str: string) => string,
   _chunks: string[],
