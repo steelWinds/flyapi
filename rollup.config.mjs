@@ -24,10 +24,6 @@ export default {
 	plugins: [
 		alias({
       entries: [
-        {
-          find: 'utils',
-          replacement: 'utils'
-        },
 				{
           find: 'src',
           replacement: 'src'

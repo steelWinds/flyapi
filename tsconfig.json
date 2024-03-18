@@ -3,14 +3,14 @@
 		"baseUrl": ".",
 		"paths": {
 			"src/*": ["src/*"],
-			"utils/*": ["utils/*"]
+			"utils/*": ["src/utils/*"]
 		},
+		"rootDir": "src",
     "target": "ES2022",
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": ["ES6"],
 		"declarationMap": true,
-    "skipLibCheck": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -28,5 +28,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts", "utils/**/*.ts"]
+  "include": ["src/*.ts", "src/runtime/**/*.ts", "src/utils/**/*.ts"],
 }

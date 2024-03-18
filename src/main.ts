@@ -1,1 +1,1 @@
-export * from 'src/proxy-fabric'
+export * from 'src/runtime/proxy-fabric'

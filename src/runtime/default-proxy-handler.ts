@@ -1,5 +1,5 @@
 import type { $Fetch, FetchOptions } from 'ofetch'
-import { isNil } from 'utils'
+import { isNil } from 'src/utils'
 import { joinURL } from 'ufo'
 
 export interface FlyapiHandlerOptions extends FetchOptions {
