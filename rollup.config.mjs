@@ -33,7 +33,9 @@ export default {
 		commonjs(),
 		resolve(),
 		typescript({
-			exclude: resolvePath('src', '__tests__', '**', '*.spec.ts')
+			exclude: [
+				resolvePath('src', '__tests__', '**', '*.spec.ts')
+			]
 		}),
 		babel({
 			babelHelpers: 'bundled',
