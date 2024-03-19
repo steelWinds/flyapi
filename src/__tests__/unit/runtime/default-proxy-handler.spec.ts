@@ -17,4 +17,29 @@ describe('Default proxy handler tests', () => {
 
     expect(_fetch.mock.lastCall[0]).toBe('|_one_|/|_two_|/|_three_|')
   })
+
+  test('With URL params, without case transform', () => {
+    void proxyHandler(['one', 'two', 'three'], {
+      urlParams: {
+        one: 1,
+        two: 'myparam',
+        three: 2 + 2
+      }
+    })
+
+    expect(_fetch.mock.lastCall[0]).toBe('one/1/two/myparam/three/4')
+  })
+
+  test('With URL params, with case transform', () => {
+    void proxyHandler(['one', 'two', 'three'], {
+      urlParams: {
+        one: 1,
+        two: 'myparam',
+        three: 2 + 2
+      },
+      selfCaseTransform: (str) => `|_${str}_|`
+    })
+
+    expect(_fetch.mock.lastCall[0]).toBe('|_one_|/1/|_two_|/myparam/|_three_|/4')
+  })
 })

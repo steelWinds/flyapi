@@ -15,13 +15,10 @@ export const defaultProxyHandler = <T>(
 ): Promise<T> => {
   const { selfCaseTransform, urlParams = {}, ...fetchOptions } = options
 
-  const caseTransformedChunks = _chunks.map(item =>
-    (isNil(selfCaseTransform) ? _defaultTransform(item) : selfCaseTransform(item)).trim())
-
   const pathChunks: string[] = []
 
-  for (const chunk of caseTransformedChunks) {
-    pathChunks.push(chunk)
+  for (const chunk of _chunks) {
+    pathChunks.push((isNil(selfCaseTransform) ? _defaultTransform(chunk) : selfCaseTransform(chunk)).trim())
 
     !isNil(urlParams[chunk]) && pathChunks.push(String(urlParams[chunk]))
   }
