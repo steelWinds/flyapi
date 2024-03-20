@@ -32,11 +32,15 @@ export default {
     }),
 		commonjs(),
 		resolve(),
-		typescript(),
+		typescript({
+			exclude: [
+				resolvePath('src', '__tests__', '**', '*.spec.ts')
+			]
+		}),
 		babel({
 			babelHelpers: 'bundled',
 			extensions: ['.ts'],
-			include: resolvePath('lib', '**', '*.ts')
+			include: resolvePath('src', '**', '*.ts')
 		}),
 		isProduction && (await import('@rollup/plugin-terser')).default(),
 	]

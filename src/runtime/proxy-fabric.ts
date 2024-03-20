@@ -1,5 +1,6 @@
 import { ofetch, type FetchOptions } from 'ofetch'
-import { defaultProxyHandler, type FlyapiHandlerOptions } from 'src/runtime/default-proxy-handler'
+import { defaultExecuteHandler, type FlyapiHandlerOptions } from 'src/runtime/default-execute-handler'
+import { isNil } from 'src/utils'
 
 interface ExecuteHandler<T> {
   exec: <Concrete = null>(options?: FlyapiHandlerOptions) => Promise<Concrete extends null ? T : Concrete extends T ? Concrete : never>
@@ -26,42 +27,37 @@ export type GeneratedFlyapiSchema<Schema extends Record<string, any>> = {
 interface FlyapiFabricOptions {
   fetchOptions?: FetchOptions
   caseTransform?: (str: string) => string
-  proxyHandler?: typeof defaultProxyHandler
+  executeHandler?: typeof defaultExecuteHandler
 }
 
-const flyapi = <T extends Record<string, any>>(options: FlyapiFabricOptions = {}): GeneratedFlyapiSchema<T> => {
-  const { fetchOptions = {}, caseTransform = (str: string) => str, proxyHandler } = options
+interface FlyapiCallItem {
+  __callStack?: string[]
+}
 
-  const _fetchInstance = ofetch.create(fetchOptions)
-  const handler = (proxyHandler ?? defaultProxyHandler).bind(null, _fetchInstance, caseTransform)
+export const proxyFabric = <T extends Record<string, any>>(options: FlyapiFabricOptions = {}): GeneratedFlyapiSchema<T> => {
+  const { fetchOptions = {}, caseTransform = (str: string) => str, executeHandler } = options
 
-  let recordedChunks: string[] = []
-
-  const executedInstance = {
-    exec (options?: FlyapiHandlerOptions) {
-      const chunks = recordedChunks
-
-      recordedChunks = []
-
-      return handler(chunks, options)
-    }
+  const fetchInstance = ofetch.create(fetchOptions)
+  const _executeHandler = (executeHandler ?? defaultExecuteHandler).bind(null, fetchInstance, caseTransform)
+  const executeCallStack = (recordedChunks: string[], options?: FlyapiHandlerOptions): Promise<unknown> => {
+    return _executeHandler(recordedChunks, options)
   }
 
-  const proxy = new Proxy(executedInstance, {
-    get (target, prop, receiver) {
+  const proxyHandler = {
+    get (target: FlyapiCallItem, prop: string): any {
       if (typeof prop === 'symbol') {
         throw new Error('Properties must be a string')
       }
 
-      if (prop === 'exec') return Reflect.get(target, prop, receiver)
+      if (isNil(target.__callStack)) return new Proxy({ __callStack: [prop] }, proxyHandler)
 
-      recordedChunks.push(prop)
+      if (prop === 'exec') return executeCallStack.bind(null, target.__callStack)
 
-      return proxy
+      target.__callStack.push(prop)
+
+      return new Proxy(target, proxyHandler)
     }
-  }) as GeneratedFlyapiSchema<T>
+  }
 
-  return proxy
+  return new Proxy({}, proxyHandler) as GeneratedFlyapiSchema<T>
 }
-
-export { flyapi }
