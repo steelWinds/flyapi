@@ -7,7 +7,7 @@ interface ExecuteHandler<T> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type Group<T, _SelfExec = null> = {
+export type FlyapiGroup<T, _SelfExec = null> = {
   [K in keyof T]: T[K]
 } & { _schema: never }
 
@@ -18,7 +18,7 @@ export type GeneratedFlyapiGroup<Path, SelfExec = null> = GeneratedFlyapiGroupWi
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ExecuteHandlerExtractor<Path> = Path extends Function ? Path : ExecuteHandler<Path>
 
-export type GeneratedFlyapiPath<Path> = Path extends Group<Path, infer SelfExec> ? GeneratedFlyapiSchema<GeneratedFlyapiGroup<Path, SelfExec>> : ExecuteHandlerExtractor<Path>
+export type GeneratedFlyapiPath<Path> = Path extends FlyapiGroup<Path, infer SelfExec> ? GeneratedFlyapiSchema<GeneratedFlyapiGroup<Path, SelfExec>> : ExecuteHandlerExtractor<Path>
 
 export type GeneratedFlyapiSchema<Schema extends Record<string, any>> = {
   [Key in keyof Schema]: GeneratedFlyapiPath<Schema[Key]>

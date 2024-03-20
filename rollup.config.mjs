@@ -17,8 +17,7 @@ export default {
 		},
 		{
 			file: 'dist/main.js',
-			format: 'esm',
-			sourcemap: 'inline'
+			format: 'esm'
 		},
 	],
 	plugins: [
