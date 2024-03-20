@@ -1,16 +1,16 @@
 import { describe, test, vi, expect } from 'vitest'
-import { proxyFabric, type Group } from 'src/runtime/proxy-fabric'
+import { proxyFabric, type FlyapiGroup } from 'src/runtime/proxy-fabric'
 
 describe('Proxy fabric tests', () => {
   const executeHandlerMock = vi.fn((_, __, chunks) => chunks)
 
   interface MockApi {
-    one: Group<{
+    one: FlyapiGroup<{
       two: number
-      three: Group<{
+      three: FlyapiGroup<{
         four: number
       }>
-    }>
+    }, number>
     three: number
   }
 
