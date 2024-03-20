@@ -7,17 +7,17 @@ export interface FlyapiHandlerOptions extends FetchOptions {
   selfCaseTransform?: (str: string) => string
 }
 
-export const defaultProxyHandler = <T>(
+export const defaultExecuteHandler = <T>(
   _fetchInstance: $Fetch,
   _defaultTransform: (str: string) => string,
-  _chunks: string[],
+  chunks: string[],
   options: FlyapiHandlerOptions = {}
 ): Promise<T> => {
   const { selfCaseTransform, urlParams = {}, ...fetchOptions } = options
 
   const pathChunks: string[] = []
 
-  for (const chunk of _chunks) {
+  for (const chunk of chunks) {
     pathChunks.push((isNil(selfCaseTransform) ? _defaultTransform(chunk) : selfCaseTransform(chunk)).trim())
 
     !isNil(urlParams[chunk]) && pathChunks.push(String(urlParams[chunk]))
