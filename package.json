@@ -1,7 +1,7 @@
 {
   "name": "@steelwindshellahillz/flyapi",
   "private": false,
-  "version": "0.2.5",
+  "version": "0.2.6",
   "type": "module",
   "files": [
     "dist"
@@ -16,7 +16,7 @@
   },
   "types": "./dist/main.d.ts",
   "scripts": {
-    "build": "rollup --config",
+    "build": "rollup --config && tsc-alias",
     "dev": "rollup --watch --config",
     "vitest": "vitest run"
   },
@@ -40,6 +40,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "ofetch": "^1.3.3",
+    "tsc-alias": "^1.8.8",
     "tslib": "^2.6.2",
     "typescript": "^5.4.2",
     "ufo": "^1.4.0",

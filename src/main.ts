@@ -1,1 +1,1 @@
-export { proxyFabric as flyapi, type FlyapiGroup } from './runtime/proxy-fabric'
+export { proxyFabric as flyapi, type FlyapiGroup } from 'src/runtime/proxy-fabric'

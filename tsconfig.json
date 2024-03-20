@@ -10,6 +10,7 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": ["ES6"],
+		"declarationDir": "dist",
 		"declarationMap": true,
 
     /* Bundler mode */
@@ -29,4 +30,7 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src/**/*.ts"],
+	"tsc-alias": {
+    "verbose": true,
+  }
 }
