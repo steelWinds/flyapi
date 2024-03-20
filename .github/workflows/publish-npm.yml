@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
+      NODE_ENV: production
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v4
