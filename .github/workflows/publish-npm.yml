@@ -19,7 +19,16 @@ jobs:
         with:
           node-version: 'latest'
           registry-url: https://registry.npmjs.org
-      - run: npm ci
-      - run: npx run vitest
-      - run: npm run build
-      - run: npm publish --access=public
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests based on Vitest
+        run: npm run test
+      - name: Upload coverate report
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: steelWinds/flyapi
+      - name: Build
+        run: npm run build
+      - name: Publish to NPM
+        run: npm publish --access=public
