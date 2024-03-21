@@ -4,7 +4,7 @@ import { joinURL } from 'ufo'
 
 export interface FlyapiHandlerOptions extends FetchOptions {
   urlParams?: Record<string, string | number>
-  selfCaseTransform?: (str: string) => string
+  caseTransform?: (str: string) => string
 }
 
 export const defaultExecuteHandler = <T>(
@@ -13,12 +13,12 @@ export const defaultExecuteHandler = <T>(
   chunks: string[],
   options: FlyapiHandlerOptions = {}
 ): Promise<T> => {
-  const { selfCaseTransform, urlParams = {}, ...fetchOptions } = options
+  const { caseTransform, urlParams = {}, ...fetchOptions } = options
 
   const pathChunks: string[] = []
 
   for (const chunk of chunks) {
-    pathChunks.push((isNil(selfCaseTransform) ? _defaultTransform(chunk) : selfCaseTransform(chunk)).trim())
+    pathChunks.push((isNil(caseTransform) ? _defaultTransform(chunk) : caseTransform(chunk)).trim())
 
     !isNil(urlParams[chunk]) && pathChunks.push(String(urlParams[chunk]))
   }

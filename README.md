@@ -8,7 +8,7 @@
 </br>
 
 <div align="center">
-  <a href=>
+  <a href="https://www.npmjs.com/package/@steelwindshellahillz/flyapi">
 		<img width="300" height="230" src="./public/logo.svg">
 	</a>
 </div>
@@ -20,39 +20,13 @@
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
 ![RollupJS](https://img.shields.io/badge/RollupJS-ef3335?style=for-the-badge&logo=rollup.js&logoColor=white)
 
-## Getting Started
+## Documentation
 
-### Installation
-1. Clone the repo
-   ```bash
-   git clone https://github.com/steelWinds/identavatar
-   ```
-2. Install modules
-   ```bash
-   go mod tidy
-   ```
-3. Build docker image and run it
-   ```bash
-   make build
-   ```
-3. Or run docker-compose with Air
-   ```bash
-   make up
-   ```
-### Usage
+Visit the Homepage - 
 
-#### Query params:
-- ```squares: Int (required)``` - amount of squares
-- ```size: Int (required)``` - size of square 
-- ```word: String (required)``` - your word 
-
-#### Example
-```bash
-http://localhost:3180/?squares=6&size=30&word=mycoolword
-```
 ## License
 
-Distributed under the MPL v2 License. See LICENSE.txt for more information.
+Distributed under the MPL-2.0 License. See LICENSE.txt for more information.
 
 ## Contact
 

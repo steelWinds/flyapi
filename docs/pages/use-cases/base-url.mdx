@@ -1,0 +1,20 @@
+# Base URL
+
+You can set the base URL both at the instance level and at the call level when you call .exec()
+
+## Instance level
+```typescript
+const flyapiInstance = flyapi<MyAwesomeApi>({
+	fetchOptions: {
+		baseURL: 'https://jsonplaceholder.typicode.com/'
+	},
+})
+```
+
+## Self level
+```typescript
+const allTodos = await flyapiInstance.todos.exec<Todo[]>({
+  baseURL: 'https://jsonplaceholder.typicode.com'
+})
+```
+> This can be useful when you only need to change the endpoint in a specific method

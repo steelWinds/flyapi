@@ -1,27 +1,76 @@
-import { Tab, Tabs } from '../components/Tabs';
-
 # Documentation
 
 ## Installation
 
 You can install Flyapi in one of the following ways:
 
-<Tabs>
-  <Tab label="NPM">
-		```bash
-		npm add @steelwindshellahillz/flyapi
-		```
-	</Tab>
-  <Tab label="PNPM">
-		```bash
-		pnpm add @steelwindshellahillz/flyapi
-		```
-	</Tab>
-  <Tab label="YARN">
-		```bash
-		yarn add @steelwindshellahillz/flyapi
-		```
-	</Tab>
-</Tabs>
+```bash
+npm install @steelwindshellahillz/flyapi
+```
+```bash
+pnpm add @steelwindshellahillz/flyapi
+```
+```bash
+yarn add @steelwindshellahillz/flyapi
+```
 
 ## Usage
+
+### Initialize the API instance
+
+> You can also optionally add the types
+
+```typescript
+import { flyapi, type FlyapiGroup } from '@steelwindshellahillz/flyapi'
+
+interface Todo {
+	id: number
+}
+
+interface Comment {
+	id: number
+}
+
+interface Post {
+	id: number
+}
+
+interface MyAwesomeApi {
+	todos: Todo | Todo[]
+	posts: FlyapiGroup<{
+		comments: Comment[]
+	}, Post | Post[]>
+}
+
+const flyapiInstance = flyapi<MyAwesomeApi>({
+	fetchOptions: {
+		baseURL: 'https://jsonplaceholder.typicode.com/'
+	},
+})
+```
+
+### It's end, You can use it!
+
+```typescript
+const allTodos = await flyapiInstance.todos.exec<Todo[]>()
+const firstTodo = await flyapiInstance.todos.exec<Todo>({
+	urlParams: {
+		todos: 1
+	}
+})
+
+const allPosts = await flyapiInstance.posts.exec<Post[]>()
+const firstPosts = await flyapiInstance.posts.exec<Post>({
+	urlParams: {
+		posts: 1
+	}
+})
+
+const comments = await flyapiInstance.posts.comments.exec({
+	urlParams: {
+		posts: 1
+	}
+})
+```
+
+> Yes, it's worth specifying that under the condition that a **single endpoint can return two types at the same time**, I haven't found a better and simpler solution than simple **union type refinements**

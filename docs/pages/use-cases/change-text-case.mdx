@@ -1,0 +1,24 @@
+# Change text case
+
+Heh, thought I'd forget about it? Of course not, you can add a converter function at the instance level and at the called method level as well.
+
+## Instance level
+```typescript
+import * as changeCase from 'change-case'
+
+const flyapiInstance = flyapi<MyAwesomeApi>({
+	fetchOptions: {
+		baseURL: 'https://someyourapi.com/'
+	},
+  caseTransform: (str) => changeCase.snakeCase(str)
+})
+
+const allTodos = await flyapiInstance.someEndPoint.exec() // Transformed to https://someyourapi.com/some_end_point
+```
+
+## Self level
+```typescript
+const allTodos = await flyapiInstance.someEndPoint.exec({
+	caseTransform: (str) => changeCase.snakeCase(str) // Transformed to https://someyourapi.com/some_end_point
+})
+```

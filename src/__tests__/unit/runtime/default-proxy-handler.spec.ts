@@ -13,7 +13,7 @@ describe('Default proxy handler tests', () => {
   })
 
   test('With case transform', () => {
-    void executeHandler(['one', 'two', 'three'], { selfCaseTransform: (str) => `|_${str}_|` })
+    void executeHandler(['one', 'two', 'three'], { caseTransform: (str) => `|_${str}_|` })
 
     expect(_fetch.mock.lastCall?.[0]).toBe('|_one_|/|_two_|/|_three_|')
   })
@@ -37,7 +37,7 @@ describe('Default proxy handler tests', () => {
         two: 'myparam',
         three: 2 + 2
       },
-      selfCaseTransform: (str) => `|_${str}_|`
+      caseTransform: (str) => `|_${str}_|`
     })
 
     expect(_fetch.mock.lastCall?.[0]).toBe('|_one_|/1/|_two_|/myparam/|_three_|/4')
