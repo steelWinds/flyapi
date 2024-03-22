@@ -27,5 +27,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "ufo": "^1.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "and": "^0.0.3",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.3"
   }
 }
