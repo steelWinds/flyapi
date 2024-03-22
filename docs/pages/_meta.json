@@ -1,5 +1,9 @@
 {
   "index": "Getting started",
   "docs": "Docs",
-  "use-cases": "Use cases"
+  "use-cases": "Use cases",
+	"github_link": {
+    "title": "Github",
+    "href": "https://github.com/steelWinds/flyapi"
+  }
 }
