@@ -1,28 +1,37 @@
 /* v8 ignore start */
 import { useRouter } from 'next/router'
 import { useConfig } from 'nextra-theme-docs'
-import { joinURL } from 'ufo'
+import { joinURL, parseURL } from 'ufo'
 
 export default {
 	head: () => {
-    const { asPath, defaultLocale, locale, ...other } = useRouter()
+    const { asPath, defaultLocale, locale } = useRouter()
     const { frontMatter, title } = useConfig()
 
     const url = joinURL(process.env.NEXT_PUBLIC_SITE_URL, defaultLocale === locale ? asPath : joinURL(locale, asPath))
+		const { host } = parseURL(process.env.NEXT_PUBLIC_SITE_URL)
 
     return (
       <>
 				<title>Flyapi | {title}</title>
-        <meta property="og:url" content={url} />
-        <meta property="og:title" content={frontMatter.title || 'Flyapi'} />
-        <meta
-          property="og:description"
-          content={frontMatter.description || 'Fly with your API right now!'}
-        />
+
 				<link rel="manifest" href="/manifest.json" />
 				<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 				<link rel="icon" href="/favicon.ico" sizes="32x32" />
 				<link rel="icon" href="/icon.svg" sizes="any" type="image/svg+xml" />
+
+				<meta property="og:url" content={url} />
+				<meta property="og:type" content="website" />
+				<meta property="og:title" content={frontMatter.title || 'Flyapi'} />
+				<meta property="og:description" content={frontMatter.description || 'Fly with your API right now!'} />
+				<meta property="og:image" content="/og-image.png" />
+
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta property="twitter:domain" content={host} />
+				<meta property="twitter:url" content={url} />
+				<meta name="twitter:title" content={frontMatter.title || 'Flyapi'} />
+				<meta name="twitter:description" content={frontMatter.description || 'Fly with your API right now!'} />
+				<meta name="twitter:image" content="/og-image.png" />
       </>
     )
   },
