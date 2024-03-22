@@ -15,8 +15,10 @@ export default {
     return (
       <>
 				<title>Flyapi | {title}</title>
+				<meta name="description" content={frontMatter.description || 'Fly with your API right now!'} />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-				<link rel="manifest" href="/manifest.json" />
+				<link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
 				<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 				<link rel="icon" href="/favicon.ico" sizes="32x32" />
 				<link rel="icon" href="/icon.svg" sizes="any" type="image/svg+xml" />
