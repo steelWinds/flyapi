@@ -38,9 +38,8 @@
   "types": "./dist/main.d.ts",
   "scripts": {
     "build": "rollup --config && tsc-alias",
-    "dev": "rollup --watch --config",
-    "test": "vitest run",
-    "prepare": "husky"
+    "dev": "husky && rollup --watch --config",
+    "test": "vitest run"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
