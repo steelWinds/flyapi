@@ -1,6 +1,8 @@
+/* v8 ignore start */
 const withNextra = require('nextra')({
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.jsx'
 })
 
 module.exports = withNextra()
+/* v8 ignore end */

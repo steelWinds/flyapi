@@ -1,3 +1,4 @@
+/* v8 ignore start */
 import { useRouter } from 'next/router'
 import { useConfig } from 'nextra-theme-docs'
 import { joinURL } from 'ufo'
@@ -46,3 +47,4 @@ export default {
 		component: null
 	}
 }
+/* v8 ignore end */
