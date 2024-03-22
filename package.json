@@ -41,6 +41,9 @@
     "dev": "husky && rollup --watch --config",
     "test": "vitest run"
   },
+	"optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.13.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
