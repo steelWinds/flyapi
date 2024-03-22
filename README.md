@@ -3,7 +3,7 @@
 ![GitHub](https://img.shields.io/github/license/steelWinds/flyapi)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/steelWinds/flyapi)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40steelwindshellahillz%2Fflyapi)
-![Codecov](https://img.shields.io/codecov/c/github/steelWinds/flyapi)
+[![codecov](https://codecov.io/gh/steelWinds/flyapi/graph/badge.svg?token=OBBZ6POQ8I)](https://codecov.io/gh/steelWinds/flyapi)
 
 </br>
 
