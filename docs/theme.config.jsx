@@ -10,7 +10,7 @@ export default {
 
     const url = joinURL(process.env.NEXT_PUBLIC_SITE_URL, defaultLocale === locale ? asPath : joinURL(locale, asPath))
 		const { host } = parseURL(process.env.NEXT_PUBLIC_SITE_URL)
-		const ogImageURL = joinURL(host, '/og-image.png')
+		const ogImageURL = joinURL(process.env.NEXT_PUBLIC_SITE_URL, '/og-image.png')
 
     return (
       <>
