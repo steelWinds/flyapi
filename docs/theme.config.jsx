@@ -10,6 +10,7 @@ export default {
 
     const url = joinURL(process.env.NEXT_PUBLIC_SITE_URL, defaultLocale === locale ? asPath : joinURL(locale, asPath))
 		const { host } = parseURL(process.env.NEXT_PUBLIC_SITE_URL)
+		const ogImageURL = joinURL(host, '/og-image.png')
 
     return (
       <>
@@ -24,14 +25,14 @@ export default {
 				<meta property="og:type" content="website" />
 				<meta property="og:title" content={frontMatter.title || 'Flyapi'} />
 				<meta property="og:description" content={frontMatter.description || 'Fly with your API right now!'} />
-				<meta property="og:image" content="/og-image.png" />
+				<meta property="og:image" content={ogImageURL} />
 
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta property="twitter:domain" content={host} />
 				<meta property="twitter:url" content={url} />
 				<meta name="twitter:title" content={frontMatter.title || 'Flyapi'} />
 				<meta name="twitter:description" content={frontMatter.description || 'Fly with your API right now!'} />
-				<meta name="twitter:image" content="/og-image.png" />
+				<meta name="twitter:image" content={ogImageURL} />
       </>
     )
   },
