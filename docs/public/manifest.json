@@ -8,19 +8,19 @@
 	"theme_color": "#fff",
 	"orientation": "any",
   "icons": [
-    { "src": "/static/maskable_icon_x192.png", "type": "image/png", "sizes": "192x192" },
-    { "src": "/static/maskable_icon_x512.png", "type": "image/png", "sizes": "512x512" }
+    { "src": "/maskable_icon_x192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/maskable_icon_x512.png", "type": "image/png", "sizes": "512x512" }
   ],
 	"screenshots": [
     {
-     	"src": "/static/screenshots/desktop.webp",
+     	"src": "/screenshots/desktop.webp",
       "sizes": "1024x728",
       "type": "image/webp",
       "form_factor": "wide",
       "label": "Desktop screen"
     },
 		{
-			"src": "/static/screenshots/mobile.webp",
+			"src": "/screenshots/mobile.webp",
 			"sizes": "375x667",
 			"type": "image/webp",
 			"form_factor": "narrow",
