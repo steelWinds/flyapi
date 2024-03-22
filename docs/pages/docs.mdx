@@ -42,11 +42,13 @@ interface MyAwesomeApi {
 	}, Post | Post[]>
 }
 
-const flyapiInstance = flyapi<MyAwesomeApi>({
+const options = {
 	fetchOptions: {
 		baseURL: 'https://jsonplaceholder.typicode.com/'
 	},
-})
+}
+
+const flyapiInstance = flyapi<MyAwesomeApi>(options)
 ```
 
 ### It's end, You can use it!

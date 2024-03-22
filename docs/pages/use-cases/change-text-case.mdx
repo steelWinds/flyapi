@@ -6,12 +6,14 @@ Heh, thought I'd forget about it? Of course not, you can add a converter functio
 ```typescript
 import * as changeCase from 'change-case'
 
-const flyapiInstance = flyapi<MyAwesomeApi>({
+const options = {
 	fetchOptions: {
 		baseURL: 'https://someyourapi.com/'
 	},
-  caseTransform: (str) => changeCase.snakeCase(str)
-})
+  	caseTransform: (str) => changeCase.snakeCase(str)
+}
+
+const flyapiInstance = flyapi(options)
 
 const allTodos = await flyapiInstance.someEndPoint.exec() // Transformed to https://someyourapi.com/some_end_point
 ```

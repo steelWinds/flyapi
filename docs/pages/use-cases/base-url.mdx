@@ -4,7 +4,14 @@ You can set the base URL both at the instance level and at the call level when y
 
 ## Instance level
 ```typescript
-const flyapiInstance = flyapi<MyAwesomeApi>({
+const options = {
+	fetchOptions: {
+		baseURL: 'https://someyourapi.com/'
+	},
+  	caseTransform: (str) => changeCase.snakeCase(str)
+}
+
+const flyapiInstance = flyapi({
 	fetchOptions: {
 		baseURL: 'https://jsonplaceholder.typicode.com/'
 	},
@@ -13,7 +20,7 @@ const flyapiInstance = flyapi<MyAwesomeApi>({
 
 ## Self level
 ```typescript
-const allTodos = await flyapiInstance.todos.exec<Todo[]>({
+const allTodos = await flyapiInstance.todos.exec({
   baseURL: 'https://jsonplaceholder.typicode.com'
 })
 ```

@@ -1,0 +1,30 @@
+{
+	"name": "Flyapi documentation",
+  "short_name": "Flyapi",
+  "start_url": "/",
+  "display": "standalone",
+	"description": "Fly with your API right now!",
+	"background_color": "#fff",
+	"theme_color": "#fff",
+	"orientation": "any",
+  "icons": [
+    { "src": "/static/maskable_icon_x192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/static/maskable_icon_x512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+	"screenshots": [
+    {
+     	"src": "/static/screenshots/desktop.webp",
+      "sizes": "1024x728",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Desktop screen"
+    },
+		{
+			"src": "/static/screenshots/mobile.webp",
+			"sizes": "375x667",
+			"type": "image/webp",
+			"form_factor": "narrow",
+			"label": "Mobile screen"
+		}
+	]
+}

@@ -4,19 +4,22 @@ import { joinURL } from 'ufo'
 
 export default {
 	head: () => {
-    const { asPath, defaultLocale, locale } = useRouter()
-    const { frontMatter } = useConfig()
+    const { asPath, defaultLocale, locale, ...other } = useRouter()
+    const { frontMatter, title } = useConfig()
 
     const url = joinURL(process.env.NEXT_PUBLIC_SITE_URL, defaultLocale === locale ? asPath : joinURL(locale, asPath))
 
     return (
       <>
+				<title>Flyapi | {title}</title>
         <meta property="og:url" content={url} />
         <meta property="og:title" content={frontMatter.title || 'Flyapi'} />
         <meta
           property="og:description"
           content={frontMatter.description || 'Fly with your API right now!'}
         />
+				<link rel="manifest" href="/static/manifest.json" />
+				<link rel="apple-touch-icon" href="/static/apple-touch-icon.png" />
 				<link rel="icon" href="/static/favicon.ico" sizes="32x32" />
 				<link rel="icon" href="/static/icon.svg" sizes="any" type="image/svg+xml" />
       </>
