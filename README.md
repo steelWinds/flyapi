@@ -20,6 +20,14 @@
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
 ![RollupJS](https://img.shields.io/badge/RollupJS-ef3335?style=for-the-badge&logo=rollup.js&logoColor=white)
 
+## Motivation
+
+In general, the idea of this simple project is quite spontaneous and simple - to make interaction with REST API simple, clear and type-safe. **And the most important thing is that Flyapi allows you not to write hundreds of lines of overhead**
+
+> The library does not support automatic generation of types, but you can do it yourself, and then designate types in the library!
+
+Features
+
 ## Documentation
 
 Visit the [Homepage](https://flyapi.vercel.app/)
