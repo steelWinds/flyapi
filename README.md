@@ -26,8 +26,6 @@ In general, the idea of this simple project is quite spontaneous and simple - to
 
 > The library does not support automatic generation of types, but you can do it yourself, and then designate types in the library!
 
-Features
-
 ## Documentation
 
 Visit the [Homepage](https://flyapi.vercel.app/)
