@@ -22,7 +22,7 @@ jobs:
         run: npm ci
       - name: Run tests based on Vitest
         run: npm run test
-      - name: Upload coverate report
+      - name: Upload coverage report
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
