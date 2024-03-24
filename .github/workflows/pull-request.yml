@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: production
+    environment: feature
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,11 +19,6 @@ jobs:
         run: npm ci
       - name: Run tests based on Vitest
         run: npm run test
-      - name: Upload coverate report
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: steelWinds/flyapi
       - name: Build
         run: npm run build
         env:
