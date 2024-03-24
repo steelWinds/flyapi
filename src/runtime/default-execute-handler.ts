@@ -9,7 +9,7 @@ export interface FlyapiHandlerOptions extends FetchOptions {
 
 export const defaultExecuteHandler = <T>(
   _fetchInstance: $Fetch,
-  _defaultTransform: (str: string) => string,
+  _defaultTransform: ((str: string) => string) | undefined,
   chunks: string[],
   options: FlyapiHandlerOptions = {}
 ): Promise<T> => {
@@ -17,8 +17,10 @@ export const defaultExecuteHandler = <T>(
 
   const pathChunks: string[] = []
 
+  const transformFn = caseTransform ?? _defaultTransform
+
   for (const chunk of chunks) {
-    pathChunks.push((isNil(caseTransform) ? _defaultTransform(chunk) : caseTransform(chunk)).trim())
+    pathChunks.push((isNil(transformFn) ? chunk : transformFn(chunk)).trim())
 
     !isNil(urlParams[chunk]) && pathChunks.push(String(urlParams[chunk]))
   }

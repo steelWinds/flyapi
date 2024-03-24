@@ -35,7 +35,7 @@ interface FlyapiCallItem {
 }
 
 export const proxyFabric = <T extends Record<string, any>>(options: FlyapiFabricOptions = {}): GeneratedFlyapiSchema<T> => {
-  const { fetchOptions = {}, caseTransform = (str: string) => str, executeHandler } = options
+  const { fetchOptions = {}, caseTransform, executeHandler } = options
 
   const fetchInstance = ofetch.create(fetchOptions)
   const _executeHandler = (executeHandler ?? defaultExecuteHandler).bind(null, fetchInstance, caseTransform)
@@ -45,7 +45,7 @@ export const proxyFabric = <T extends Record<string, any>>(options: FlyapiFabric
 
   const proxyHandler = {
     get (target: FlyapiCallItem, prop: string): any {
-      if (typeof prop === 'symbol') {
+      if (typeof prop !== 'string') {
         throw new Error('Properties must be a string')
       }
 
