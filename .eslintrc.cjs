@@ -23,6 +23,6 @@ module.exports = {
 		sourceType: 'module'
 	},
 	rules: {
-		"@typescript-eslint/promise-function-async": "off",
+		'@typescript-eslint/promise-function-async': 'off',
 	}
 }
