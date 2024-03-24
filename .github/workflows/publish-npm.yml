@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      NODE_ENV: production
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -30,5 +29,7 @@ jobs:
           slug: steelWinds/flyapi
       - name: Build
         run: npm run build
+        env:
+          NODE_ENV: production
       - name: Publish to NPM
         run: npm publish --access=public
