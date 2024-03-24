@@ -40,10 +40,11 @@
     "build": "rollup --config && tsc-alias",
     "dev": "husky && rollup --watch --config",
     "test": "vitest run --coverage",
-    "lint": "eslint ./src/**/*.{js,ts} --fix"
+    "lint": "eslint ./src/**/*.{js,ts} --fix",
+    "lint-staged": "lint-staged"
   },
 	"lint-staged": {
-    "src/**/*.{js,ts}": "vitest run --coverage && eslint ./src/**/*.{js,ts} --fix"
+    "./src/**/*.{js,ts}": "eslint --fix"
   },
   "overrides": {
     "@typescript-eslint/parser": "^7.3.1",
